@@ -5,13 +5,12 @@ import os
 
 app = Flask(name)
 
-# Las llaves secretas se leerán desde Render (Configúralas en la pestaña "Environment")
+# Lee las llaves desde Render (se configura en el paso 2)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 def enviar_aviso_telegram(mensaje):
     if not TOKEN or not CHAT_ID:
-        print("Error: Variables de entorno no configuradas.")
         return
     try:
         params = urllib.parse.urlencode({'chat_id': CHAT_ID, 'text': mensaje})
@@ -19,7 +18,7 @@ def enviar_aviso_telegram(mensaje):
         with urllib.request.urlopen(url) as respuesta:
             return respuesta.read()
     except Exception as e:
-        print(f"Error técnico: {e}")
+        print(f"Error: {e}")
 
 @app.route('/')
 def inicio():
