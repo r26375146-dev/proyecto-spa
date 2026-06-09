@@ -23,9 +23,9 @@ def enviar_aviso_telegram(mensaje):
 def inicio():
     enviar_aviso_telegram("✨ ¡Rubi! Alguien acaba de visitar tu página de Spa Coquette 💅🎀")
     return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    @app.route('/dashboard')
+    
+@app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+ if __name__ == '__main__':
+       app.run(debug=True)
