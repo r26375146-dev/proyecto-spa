@@ -3,7 +3,7 @@ import urllib.request
 import urllib.parse
 import os
 
-app = Flask(name)
+app = Flask(__name__)
 
 # Lee las llaves desde Render (se configura en el paso 2)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
