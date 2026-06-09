@@ -5,7 +5,6 @@ import os
 
 app = Flask(__name__)
 
-# Lee las llaves desde Render (se configura en el paso 2)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
@@ -25,5 +24,5 @@ def inicio():
     enviar_aviso_telegram("✨ ¡Rubi! Alguien acaba de visitar tu página de Spa Coquette 💅🎀")
     return render_template('index.html')
 
-if name == '__main__':
+if __name__ == '__main__':
     app.run(debug=True)
