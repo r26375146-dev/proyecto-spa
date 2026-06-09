@@ -25,5 +25,5 @@ def inicio():
     enviar_aviso_telegram("✨ ¡Rubi! Alguien acaba de visitar tu página de Spa Coquette 💅🎀")
     return render_template('index.html')
 
-if name == 'main':
+if name == '__main__':
     app.run(debug=True)
