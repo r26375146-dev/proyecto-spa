@@ -3,49 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glow & Elegance | Spa y Uñas</title>
+    <title>Glow & Elegance | Spa y Uñas Coquette</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <header class="hero">
-        <h1>Glow & Elegance</h1>
-        <p>Tu momento de relajación y belleza coquette.</p>
+        <div class="hero-content">
+            <h1>Glow & Elegance</h1>
+            <p>Tu santuario de belleza coquette y relajación absoluta.</p>
+        </div>
     </header>
 
     <main class="container">
         <section class="services">
-            <h2>Nuestros Servicios</h2>
-            <div class="service-card">
-                <h3>Manicura Spa</h3>
-                <p>Diseños exclusivos, acrílico y esmaltado semipermanente con acabados impecables.</p>
-                <button class="btn-info" onclick="mostrarInfo('manicura')">Ver detalles</button>
-            </div>
-            <div class="service-card">
-                <h3>Masaje Relajante</h3>
-                <p>Desconéctate del estrés con aromaterapia y aceites esenciales florales.</p>
-                <button class="btn-info" onclick="mostrarInfo('masaje')">Ver detalles</button>
+            <h2>Nuestros Servicios Exclusivos</h2>
+            <div class="service-grid">
+                <div class="service-card" id="card-manicura">
+                    <i class="fas fa-hand-sparkles service-icon"></i>
+                    <h3>Manicura Spa</h3>
+                    <p>Diseños exclusivos, acrílico y esmaltado semipermanente impecable.</p>
+                    <p class="service-price">Desde <span class="price-value">$350</span></p>
+                    <button class="btn-info" onclick="abrirModal('manicura')">Ver detalles profesionales</button>
+                </div>
+                <div class="service-card" id="card-masaje">
+                    <i class="fas fa-spa service-icon"></i>
+                    <h3>Masaje Relajante</h3>
+                    <p>Desconéctate del estrés con aromaterapia floral y aceites esenciales.</p>
+                    <p class="service-price">Desde <span class="price-value">$500</span></p>
+                    <button class="btn-info" onclick="abrirModal('masaje')">Ver detalles profesionales</button>
+                </div>
             </div>
         </section>
 
-        <section class="portfolio" style="text-align: center; margin: 40px 0;">
-            <h2 style="color: #ff69b4;">Nuestro Trabajo</h2>
-            <div class="gallery" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <section class="portfolio">
+            <h2>Arte en tus Manos</h2>
+            <div class="gallery">
                 <img src="{{ url_for('static', filename='images/uñas1.jpg') }}" 
-                     alt="Diseño de uñas coquette" 
-                     style="width: 300px; height: 300px; object-fit: cover; border-radius: 25px; border: 5px solid #ffc0cb; box-shadow: 0 8px 15px rgba(255,105,180,0.4);">
-            </div>
+                     alt="Diseño de uñas coquette profesional" 
+                     class="gallery-img">
+                </div>
         </section>
 
         <section class="booking">
-            <h2>¿Lista para brillar?</h2>
-            <a href="https://t.me/Spa_Rubi_bot" id="btn-cita" class="coquette-btn" style="text-decoration: none; display: inline-block;">Agendar mi cita 🎀</a>
+            <div class="booking-content">
+                <h2>¿Lista para consentirte?</h2>
+                <p>Reserva tu momento de brillo y relajación con nosotros.</p>
+                <a href="https://t.me/Spa_Rubi_bot" class="coquette-btn-main">Agendar mi cita 🎀</a>
+            </div>
         </section>
     </main>
 
+    <div id="serviceModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <div id="modalData">
+                </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Glow & Elegance. Creado con amor.</p>
+        <p>&copy; 2026 Glow & Elegance. Diseño y cuidado profesional, creado con amor.</p>
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
