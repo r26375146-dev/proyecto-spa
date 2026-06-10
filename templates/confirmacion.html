@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pase de Confirmación | Glow & Elegance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-imprimir { display: none !important; }
+            body { background-color: #fff; }
+            .ticket-card { box-shadow: none !important; border: 2px dashed #ffb6c1 !important; }
+        }
+    </style>
+</head>
+<body style="background-color: #FFF0F5; padding: 20px;">
+
+    <div class="container" style="max-width: 600px; margin: 40px auto;">
+        
+        <div class="ticket-card" style="background: white; padding: 40px; border-radius: 30px; border: 3px dashed #FFC0CB; box-shadow: 0 10px 25px rgba(255,182,193,0.5); text-align: center;">
+            
+            <div style="color: #FF1493; font-size: 2.5rem; margin-bottom: 10px;"><i class="fas fa-heart"></i></div>
+            <h2 style="margin-top: 0; color: #FF1493; font-style: italic;">Glow & Elegance</h2>
+            <p style="border-bottom: 2px dashed #FFC0CB; padding-bottom: 15px; margin-bottom: 20px; font-size: 1.1rem; color: #777;">Ecosistema de Citas Automatizado</p>
+            
+            <div style="text-align: left; margin: 20px 0; font-size: 1.1rem; line-height: 1.8; background-color: #FFF5F7; padding: 20px; border-radius: 15px;">
+                <h4 style="margin-top:0; color: #FF1493;"><i class="fas fa-check-circle"></i> Paso 1: Cita guardada en Excel</h4>
+                <p><strong>👤 Clienta:</strong> {{ nombre }}</p>
+                <p><strong>💅 Servicio:</strong> {{ servicio }}</p>
+                <p><strong>📅 Fecha:</strong> {{ fecha }}</p>
+                <p><strong>⏰ Hora:</strong> {{ hora }} hs</p>
+            </div>
+            
+            <div style="margin: 25px 0; padding: 20px; border: 2px solid #FF1493; background-color: #FFF0F5; border-radius: 20px;">
+                <h4 style="margin-top: 0; color: #FF1493; font-size: 1.2rem;"><i class="fab fa-telegram"></i> Paso 2: Activa tu Asistente Virtual</h4>
+                <p style="font-size: 0.95rem; margin-bottom: 15px;">Para recibir tus recordatorios automáticos y validar tu asistencia con Rubi, haz clic abajo para iniciar el bot conversacional.</p>
+                
+                <a href="https://t.me/Spa_Rubi_bot?start=Confirmacion_{{ nombre | replace(' ', '_') }}" class="coquette-btn-main" style="text-decoration: none; font-size: 1.1rem; padding: 12px 25px; background-color: #FF1493; color: white; display: inline-block; border-radius: 30px; font-weight: bold;">
+                    Iniciar Chat en @Spa_Rubi_bot 🎀
+                </a>
+            </div>
+
+            <div class="no-imprimir" style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; border-top: 1px solid #eee; padding-top: 20px;">
+                <button onclick="window.print()" class="btn-info" style="background-color: #FFB6C1; color: #4A4A4A; margin-top:0;"><i class="fas fa-print"></i> Imprimir Ticket</button>
+                <a href="/" class="btn-info" style="text-decoration: none; margin-top: 0; background-color: #4A4A4A; color: white;">Volver al Inicio</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
