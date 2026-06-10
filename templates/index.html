@@ -21,14 +21,14 @@
         <section class="services">
             <h2>Nuestros Servicios Exclusivos</h2>
             <div class="service-grid">
-                <div class="service-card" id="card-manicura">
+                <div class="service-card">
                     <i class="fas fa-hand-sparkles service-icon"></i>
                     <h3>Manicura Spa</h3>
                     <p>Diseños exclusivos, acrílico y esmaltado semipermanente impecable.</p>
                     <p class="service-price">Desde <span class="price-value">$350</span></p>
                     <button class="btn-info" onclick="abrirModal('manicura')">Ver detalles profesionales</button>
                 </div>
-                <div class="service-card" id="card-masaje">
+                <div class="service-card">
                     <i class="fas fa-spa service-icon"></i>
                     <h3>Masaje Relajante</h3>
                     <p>Desconéctate del estrés con aromaterapia floral y aceites esenciales.</p>
@@ -41,31 +41,93 @@
         <section class="portfolio">
             <h2>Arte en tus Manos</h2>
             <div class="gallery">
-                <img src="{{ url_for('static', filename='images/uñas1.jpg') }}" 
-                     alt="Diseño de uñas coquette profesional" 
-                     class="gallery-img">
-                </div>
+                <img src="{{ url_for('static', filename='images/uñas1.jpg') }}" alt="Diseño de uñas coquette" class="gallery-img">
+            </div>
         </section>
 
         <section class="booking">
             <div class="booking-content">
-                <h2>¿Lista para consentirte?</h2>
-                <p>Reserva tu momento de brillo y relajación con nosotros.</p>
-                <a href="https://t.me/Spa_Rubi_bot" class="coquette-btn-main">Agendar mi cita 🎀</a>
+                <h2>Reserva tu Momento Glow</h2>
+                <p>Completa tus datos para agendar tu espacio de belleza en nuestro Excel administrativo.</p>
+                
+                <form action="/agendar" method="POST" class="coquette-form">
+                    <div class="form-group">
+                        <label>Tu Nombre Completo:</label>
+                        <input type="text" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selecciona el Servicio:</label>
+                        <select name="servicio" required>
+                            <option value="Manicura Spa">Manicura Spa 💅</option>
+                            <option value="Masaje Relajante">Masaje Relajante 🌸</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group-half">
+                            <label>Fecha:</label>
+                            <input type="date" name="fecha" required>
+                        </div>
+                        <div class="form-group-half">
+                            <label>Hora:</label>
+                            <input type="time" name="hora" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="coquette-btn-main" style="width: 100%; border: none;">Confirmar y Generar Documento 🎀</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="booking" style="margin-top: 40px; border-color: #e0b0b0; background-color: #FFF5F5;">
+            <div class="booking-content">
+                <h3 style="color: #C71585;"><i class="fas fa-calendar-times"></i> ¿Necesitas cancelar tu cita?</h3>
+                <p>Ingresa tus datos exactos para liberar tu espacio en la agenda automáticamente.</p>
+                <form action="/cancelar" method="POST" class="coquette-form" style="box-shadow: none; background: transparent; border: none; padding: 0;">
+                    <div class="form-row">
+                        <div class="form-group-half">
+                            <input type="text" name="nombre_cancelar" placeholder="Nombre registrado" required style="width:100%; padding:10px; border-radius:10px; border:1px solid #FFC0CB;">
+                        </div>
+                        <div class="form-group-half">
+                            <input type="date" name="fecha_cancelar" required style="width:100%; padding:10px; border-radius:10px; border:1px solid #FFC0CB;">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-info" style="background-color: #DB7093; color: white; margin-top: 10px;">Eliminar Registro de Agenda ❌</button>
+                </form>
             </div>
         </section>
     </main>
 
+    {% if error_ocupado %}
+    <div class="modal-overlay" style="display: flex;">
+        <div class="modal-content" style="border: 3px solid #FF0000;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3.5rem; color: #FF0000; margin-bottom: 15px;"></i>
+            <h3 style="color: #FF0000;">Horario No Disponible</h3>
+            <p>Lo sentimos, el día <strong>{{ fecha_ocu }}</strong> a las <strong>{{ hora_ocu }}</strong> ya está reservado por otra clienta.</p>
+            <p>Por favor, selecciona una fecha u hora diferente. 🌸</p>
+            <button class="coquette-btn-main" onclick="window.location.href='/'" style="border:none; background-color: #4A4A4A;">Volver a Intentar</button>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if cancelacion_exitosa %}
+    <div class="modal-overlay" style="display: flex;">
+        <div class="modal-content" style="border: 3px solid #DB7093;">
+            <i class="fas fa-trash-alt" style="font-size: 3.5rem; color: #DB7093; margin-bottom: 15px;"></i>
+            <h3 style="color: #DB7093;">Cita Cancelada</h3>
+            <p>Tu registro ha sido eliminado con éxito de nuestra base de datos en Excel. Tu espacio está libre nuevamente.</p>
+            <button class="coquette-btn-main" onclick="window.location.href='/'" style="border:none;">Aceptar</button>
+        </div>
+    </div>
+    {% endif %}
+
     <div id="serviceModal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
-            <div id="modalData">
-                </div>
+            <div id="modalData"></div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Glow & Elegance. Diseño y cuidado profesional, creado con amor.</p>
+        <p>&copy; 2026 Glow & Elegance. Creado con amor.</p>
     </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
