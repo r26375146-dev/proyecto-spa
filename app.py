@@ -3,7 +3,6 @@ import urllib.request
 import urllib.parse
 import os
 
-# Corrección 1: Se necesitan guiones bajos dobles en name
 app = Flask(__name__)
 
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
@@ -29,7 +28,5 @@ def inicio():
 def dashboard():
     return render_template('dashboard.html')
 
-# Corrección 2: Guiones bajos en name y main
-# Corrección 3: Asegúrate de que el if no tenga espacios a la izquierda
 if __name__ == '__main__':
     app.run(debug=True)
