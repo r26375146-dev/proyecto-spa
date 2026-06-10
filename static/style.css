@@ -1,4 +1,4 @@
-/* Paleta de colores y estilos globales */
+/* --- 1. Estilos Globales --- */
 body {
     font-family: 'Playfair Display', serif;
     background-color: #FFF0F5; /* Rosa lavanda muy claro */
@@ -8,28 +8,28 @@ body {
     text-align: center;
 }
 
-/* Encabezado principal */
-.hero {
-    background-color: #FFB6C1; /* Rosa claro */
-    padding: 60px 20px;
-    border-bottom: 3px solid #FF1493; /* Toque rosa neón */
-}
-
-.hero h1 {
-    font-size: 3em;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.5); /* Resplandor neón suave */
-    margin-bottom: 10px;
-    font-style: italic;
-}
-
 .container {
     max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* Tarjetas de servicios */
+/* --- 2. Encabezado --- */
+.hero {
+    background-color: #FFB6C1; /* Rosa claro */
+    padding: 60px 20px;
+    border-bottom: 3px solid #FF1493;
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.5);
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+/* --- 3. Tarjetas de Servicios --- */
 .services {
     display: flex;
     justify-content: space-around;
@@ -54,27 +54,52 @@ body {
 }
 
 .service-card h3 {
-    color: #FF1493; /* Rosa neón elegante */
+    color: #FF1493;
 }
 
-/* Botón Coquette */
+/* --- 4. Botones e Interactividad --- */
+
+/* Botón principal "Agendar" (Coquette) */
 .coquette-btn {
     background-color: #FF1493;
     color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    font-family: 'Playfair Display', serif;
+    padding: 15px 35px;
     border-radius: 30px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+    display: inline-block;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .coquette-btn:hover {
-    background-color: #FF69B4; /* Hot pink */
+    background-color: #FF69B4;
+    transform: scale(1.05);
 }
 
+/* Botón secundario "Ver detalles" */
+.btn-info {
+    background-color: #FFB6C1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.btn-info:hover {
+    transform: scale(1.05);
+}
+
+/* --- 5. Pie de página --- */
 footer {
     margin-top: 50px;
     padding: 20px;
