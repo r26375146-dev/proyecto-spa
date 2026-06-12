@@ -11,17 +11,20 @@ app = Flask(__name__)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
-# Configuración de Google Sheets
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets', "https://www.googleapis.com/auth/drive"]
 try:
-    creds = ServiceAccountCredentials.from_json_keyfile_name('creds-spa.json', scope)
+    # Le indicamos a Python que busque primero en la bóveda secreta de Render
+    ruta_credenciales = '/etc/secrets/creds-spa.json'
+    if not os.path.exists(ruta_credenciales):
+        ruta_credenciales = 'creds-spa.json' # Respaldo estándar
+        
+    creds = ServiceAccountCredentials.from_json_keyfile_name(ruta_credenciales, scope)
     client = gspread.authorize(creds)
     sheet = client.open("Datos Spa").sheet1
 except Exception as e:
     print(f"Error con Google Sheets: {e}")
     sheet = None
 
-# FUNCIÓN 1: Te avisa a ti (Tu Telegram personal)
 def enviar_aviso_telegram(mensaje):
     if not TOKEN or not CHAT_ID:
         return
@@ -33,12 +36,10 @@ def enviar_aviso_telegram(mensaje):
     except Exception as e:
         print(f"Error en Telegram Gestor: {e}")
 
-# FUNCIÓN 2: Le responde a tus clientas con un menú de botones táctiles
 def enviar_mensaje_cliente(chat_id, mensaje):
     if not TOKEN:
         return
     try:
-        # Creamos los botones físicos que aparecerán en el teclado del celular
         teclado_interactivo = {
             "keyboard": [
                 [{"text": "💅 Ver Servicios"}, {"text": "📍 Ubicación"}],
@@ -69,7 +70,6 @@ def enviar_mensaje_cliente(chat_id, mensaje):
 def inicio():
     return render_template('index.html')
 
-# RUTA MÁGICA: Escucha lo que escriben en Telegram
 @app.route('/webhook', methods=['POST'])
 def webhook():
     update = request.get_json()
@@ -77,10 +77,8 @@ def webhook():
         chat_id = update["message"]["chat"]["id"]
         texto = update["message"].get("text", "")
         
-        # 1. SI LE DAN CLIC A /START
         if texto.startswith("/start"):
             partes = texto.split(" ")
-            # Si viene desde el pase de la página web con nombre
             if len(partes) > 1 and "Confirmacion_" in partes[1]:
                 nombre_cliente = partes[1].replace("Confirmacion_", "").replace("_", " ")
                 bienvenida = (
@@ -97,7 +95,6 @@ def webhook():
                 )
             enviar_mensaje_cliente(chat_id, bienvenida)
             
-        # 2. RESPUESTAS AUTOMÁTICAS A LOS BOTONES
         elif texto == "💅 Ver Servicios":
             servicios_txt = (
                 "🎀 Nuestros Servicios Exclusivos 🎀\n\n"
@@ -126,7 +123,6 @@ def webhook():
 
     return "OK", 200
 
-# CONFIGURADOR DE UN SOLO CLIC
 @app.route('/configurar_bot')
 def configurar_bot():
     base_url = request.base_url.replace('/configurar_bot', '')
@@ -148,21 +144,26 @@ def agendar():
     servicio = request.form.get('servicio')
     fecha = request.form.get('fecha')
     hora = request.form.get('hora')
+    
     if sheet:
         todas_las_citas = sheet.get_all_values()
         for fila in todas_las_citas:
             if len(fila) > 3 and fila[2] == fecha and fila[3] == hora:
                 return render_template('index.html', error_ocupado=True, fecha_ocu=fecha, hora_ocu=hora)
+        
         sheet.append_row([nombre, servicio, fecha, hora])
         sheet.sort((3, 'asc'), (4, 'asc'))
-    mensaje_notificacion = f"🎀 ¡NUEVA CITA! 🎀\n\n👤 Clienta: {nombre}\n💅 Servicio: {servicio}\n📅 Fecha: {fecha}\n⏰ Hora: {hora}\n\n✅ Registrada en Excel."
+        
+    mensaje_notificacion = f"🎀 ¡NUEVA CITA! 🎀\n\n👤 Clienta: {nombre}\n💅 Servicio: {servicio}\n📅 Fecha: {fecha}\n⏰ Hora: {hora}\n\n✅ Registrada."
     enviar_aviso_telegram(mensaje_notificacion)
+    
     return render_template('confirmacion.html', nombre=nombre, servicio=servicio, fecha=fecha, hora=hora)
 
 @app.route('/cancelar', methods=['POST'])
 def cancelar():
     nombre_cancela = request.form.get('nombre_cancelar')
     fecha_cancela = request.form.get('fecha_cancelar')
+    
     if sheet:
         todas_las_citas = sheet.get_all_values()
         for index, fila in enumerate(todas_las_citas):
@@ -170,6 +171,7 @@ def cancelar():
                 sheet.delete_rows(index + 1)
                 enviar_aviso_telegram(f"❌ Cita Cancelada: {nombre_cancela} liberó el día {fecha_cancela}.")
                 return render_template('index.html', cancelacion_exitosa=True)
+                
     return render_template('index.html', cancelacion_error=True)
 
 @app.route('/dashboard')
