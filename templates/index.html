@@ -13,11 +13,11 @@
     <nav class="navbar" id="navbar">
         <div class="nav-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
         <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#galeria">Galería</a></li>
-            <li><a href="#testimonios">Testimonios</a></li>
-            <li><a href="#reservas" class="nav-btn">Agendar 🎀</a></li>
+            <li><a href="#inicio" class="nav-btn">Inicio</a></li>
+            <li><a href="#servicios" class="nav-btn">Servicios</a></li>
+            <li><a href="#galeria" class="nav-btn">Galería</a></li>
+            <li><a href="#testimonios" class="nav-btn">Testimonios</a></li>
+            <li><a href="#reservas" class="nav-btn highlight-btn">Agendar 🎀</a></li>
         </ul>
     </nav>
 
@@ -30,7 +30,7 @@
         <div class="hero-content reveal">
             <h1>Glow & Elegance</h1>
             <p>Tu santuario de belleza coquette y relajación absoluta.</p>
-            <a href="#reservas" class="coquette-btn-main hero-btn">Descubre la experiencia</a>
+            <a href="#reservas" class="coquette-btn-main hero-btn">Descubre la experiencia 🎀</a>
         </div>
     </header>
 
@@ -44,7 +44,7 @@
                     <h3>Manicura Spa</h3>
                     <p>Diseños exclusivos, acrílico y esmaltado semipermanente impecable.</p>
                     <p class="service-price">Desde <span class="price-value">$350</span></p>
-                    <button class="btn-info" onclick="abrirModal('manicura')">Ver detalles profesionales</button>
+                    <button class="coquette-btn-secondary" onclick="abrirModal('manicura')">Ver detalles 🎀</button>
                 </div>
                 <div class="service-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-glow"></div>
@@ -52,7 +52,7 @@
                     <h3>Masaje Relajante</h3>
                     <p>Desconéctate del estrés con aromaterapia floral y aceites esenciales.</p>
                     <p class="service-price">Desde <span class="price-value">$500</span></p>
-                    <button class="btn-info" onclick="abrirModal('masaje')">Ver detalles profesionales</button>
+                    <button class="coquette-btn-secondary" onclick="abrirModal('masaje')">Ver detalles 🎀</button>
                 </div>
             </div>
         </section>
@@ -62,7 +62,7 @@
             <div class="gallery reveal">
                 <div class="img-wrapper">
                     <img src="{{ url_for('static', filename='images/uñas1.jpg') }}" alt="Diseño de uñas coquette" class="gallery-img">
-                    <div class="img-overlay"><span>Uñas Acrílicas Coquette</span></div>
+                    <div class="img-overlay"><span>Uñas Acrílicas</span></div>
                 </div>
                 <div class="img-wrapper">
                     <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=500&q=80" alt="Spa Relax" class="gallery-img">
@@ -72,6 +72,30 @@
                     <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?auto=format&fit=crop&w=500&q=80" alt="Manicura premium" class="gallery-img">
                     <div class="img-overlay"><span>Manicura Premium</span></div>
                 </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=500&q=80" alt="Tratamiento Facial" class="gallery-img">
+                    <div class="img-overlay"><span>Cuidado Facial</span></div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1516975080661-422cb7f5f9f6?auto=format&fit=crop&w=500&q=80" alt="Pedicura Spa" class="gallery-img">
+                    <div class="img-overlay"><span>Pedicura Spa</span></div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1596178014302-33d3c74ff366?auto=format&fit=crop&w=500&q=80" alt="Piedras calientes" class="gallery-img">
+                    <div class="img-overlay"><span>Relajación Profunda</span></div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=80" alt="Masaje zen" class="gallery-img">
+                    <div class="img-overlay"><span>Paz y Armonía</span></div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600180758890-a7d18bc3d6d0?auto=format&fit=crop&w=500&q=80" alt="Detalle manicura" class="gallery-img">
+                    <div class="img-overlay"><span>Arte y Precisión</span></div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=500&q=80" alt="Cuidado personal" class="gallery-img">
+                    <div class="img-overlay"><span>Renueva tu Piel</span></div>
+                </div>
             </div>
         </section>
 
@@ -80,7 +104,7 @@
             <div class="testimonial-grid reveal">
                 <div class="testimonial-card">
                     <i class="fas fa-quote-left quote-icon"></i>
-                    <p>"El mejor lugar de la ciudad. El trato de Rubi es súper profesional y mis uñas quedaron hermosas, exactamente el estilo coquette que pedí."</p>
+                    <p>"El mejor lugar de la ciudad. El trato es súper profesional y mis uñas quedaron hermosas, exactamente el estilo coquette que pedí."</p>
                     <h4>— Selena G.</h4>
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
@@ -144,7 +168,7 @@
                             <input type="date" name="fecha_cancelar" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn-info btn-cancel">Eliminar Registro de Agenda ❌</button>
+                    <button type="submit" class="coquette-btn-secondary" style="width: 100%;">Eliminar Registro de Agenda ❌</button>
                 </form>
             </div>
         </section>
