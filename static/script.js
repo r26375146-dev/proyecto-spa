@@ -1,10 +1,33 @@
 /* =========================================
-   1. ANIMACIONES Y EFECTOS VISUALES (NUEVO)
+   1. ANIMACIONES, EFECTOS Y RELOJ
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // A. Efecto Pegajoso (Sticky) para la Barra de Navegación
+    // A. El Reloj en Tiempo Real
+    function actualizarReloj() {
+        const elementoReloj = document.getElementById('real-time-clock');
+        if(elementoReloj) {
+            const ahora = new Date();
+            let horas = ahora.getHours();
+            let minutos = ahora.getMinutes();
+            let segundos = ahora.getSeconds();
+            let ampm = horas >= 12 ? 'PM' : 'AM';
+            
+            horas = horas % 12;
+            horas = horas ? horas : 12; // La hora '0' debe ser '12'
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            segundos = segundos < 10 ? '0' + segundos : segundos;
+            
+            const horaTexto = horas + ':' + minutos + ':' + segundos + ' ' + ampm;
+            elementoReloj.textContent = horaTexto;
+        }
+    }
+    // Ejecutar el reloj cada segundo
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj(); // Llamada inicial para que no aparezca en blanco
+
+    // B. Efecto Pegajoso (Sticky) para la Barra de Navegación
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -14,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // B. Animación de revelado al hacer scroll (Intersection Observer)
+    // C. Animación de revelado al hacer scroll (Intersection Observer)
     const revealElements = document.querySelectorAll('.reveal');
     
     const revealOptions = {
-        threshold: 0.15, // Se activa cuando el 15% del elemento es visible
+        threshold: 0.15,
         rootMargin: "0px 0px -50px 0px"
     };
 
@@ -28,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             } else {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Deja de observar una vez animado
+                observer.unobserve(entry.target);
             }
         });
     }, revealOptions);
@@ -40,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* =========================================
-   2. FUNCIONALIDAD DEL SISTEMA (ORIGINAL INTACTO)
+   2. FUNCIONALIDAD DEL SISTEMA (MODALES)
    ========================================= */
 
 const serviciosData = {
@@ -71,8 +94,8 @@ function abrirModal(servicioId) {
         <p style="color: #4A4A4A; line-height: 1.6;">${servicio.description}</p>
         <p class="modal-price" style="color: #FF1493; font-weight: bold; margin: 20px 0;"><strong>Valor:</strong> ${servicio.price}</p>
         <div class="modal-actions" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
-            <button class="btn-info" onclick="cerrarModal()" style="background: white; border: 2px solid #FF1493; color: #FF1493; width: auto; padding: 10px 30px;">Cerrar</button>
-            <a href="#reservas" onclick="cerrarModal()" class="coquette-btn-main" style="padding: 12px 30px;">Agendar Cita 🎀</a>
+            <button class="coquette-btn-secondary" onclick="cerrarModal()" style="width: auto;">Cerrar ❌</button>
+            <a href="#reservas" onclick="cerrarModal()" class="coquette-btn-main">Agendar Cita 🎀</a>
         </div>
     `;
 
@@ -86,7 +109,6 @@ function cerrarModal() {
     document.body.style.overflow = 'auto';
 }
 
-// Cierra cualquier modal si el usuario hace clic fuera de la caja blanca
 window.onclick = function(event) {
     const modales = document.querySelectorAll('.modal-overlay');
     modales.forEach(modal => {
