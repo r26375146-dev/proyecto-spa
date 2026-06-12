@@ -101,11 +101,14 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
 .coquette-btn-secondary:hover { background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4); color: white; box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4); }
 .coquette-btn-main:hover::after, .coquette-btn-secondary:hover::after { left: 100%; opacity: 1; transition: left 0.7s ease; }
 
-/* --- 6. Galería --- */
+/* --- 6. Galería Optimización --- */
 .portfolio { padding: 60px 0; }
 .portfolio h2 { font-size: 2.5rem; color: var(--rosa-oscuro); margin-bottom: 40px; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
-.img-wrapper { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--sombra-elegante); height: 350px; }
+.img-wrapper { 
+    position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--sombra-elegante); height: 350px; 
+    background-color: #FFE4E1; /* Color suave de fondo mientras carga la imagen */
+}
 .gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .img-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(199, 21, 133, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
 .img-overlay span { color: white; font-family: var(--serif-elegante); font-size: 1.5rem; font-style: italic; transform: translateY(20px); transition: transform 0.3s ease; }
@@ -128,8 +131,9 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
     max-width: 550px; margin: 0 auto; text-align: left; background: var(--blanco-puro);
     padding: 40px; border-radius: 25px; box-shadow: var(--sombra-elegante); border: 1px solid rgba(255, 182, 193, 0.5); box-sizing: border-box;
 }
+.form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; color: var(--rosa-oscuro); font-weight: 600; font-size: 0.95rem; }
-.input-icon-wrapper { position: relative; margin-bottom: 20px; }
+.input-icon-wrapper { position: relative; }
 .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--rosa-claro); }
 .interactive-form input, .interactive-form select {
     width: 100%; padding: 15px 15px 15px 45px; border-radius: 15px; border: 2px solid #FFE4E1;
@@ -138,7 +142,7 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
 .interactive-form input:focus, .interactive-form select:focus { border-color: var(--rosa-vibrante); background-color: var(--blanco-puro); outline: none; box-shadow: 0 0 0 4px rgba(255, 20, 147, 0.1); }
 
 /* Acomodo de Fecha y Hora en columnas */
-.form-row { display: flex; gap: 15px; width: 100%; margin-bottom: 20px; }
+.form-row { display: flex; gap: 15px; width: 100%; margin-bottom: 25px; }
 .form-group-half { flex: 1; }
 .form-group-half label { display: block; margin-bottom: 8px; color: var(--rosa-oscuro); font-weight: 600; font-size: 0.95rem; }
 
@@ -174,59 +178,31 @@ footer { background: linear-gradient(180deg, var(--rosa-vibrante), var(--rosa-os
 
 
 /* =======================================================
-   12. MAGIA PARA CELULARES (RESPONSIVIDAD)
+   12. MAGIA PARA CELULARES (RESPONSIVIDAD CORREGIDA)
    ======================================================= */
 @media (max-width: 768px) {
-    /* Barra de Navegación Móvil */
-    .navbar {
-        padding: 15px 20px;
-        flex-direction: column; /* Acomoda todo de arriba hacia abajo */
-        gap: 15px;
-    }
-    .navbar.scrolled {
-        padding: 10px 20px;
-    }
-    .nav-left {
-        width: 100%;
-        justify-content: space-between; /* Separa el logo del reloj */
-    }
-    .nav-brand {
-        font-size: 1.3rem; /* Letra un poco más pequeña */
-    }
-    .nav-clock {
-        padding: 5px 12px;
-        font-size: 0.8rem;
-    }
+    .navbar { padding: 15px 20px; flex-direction: column; gap: 15px; }
+    .navbar.scrolled { padding: 10px 20px; }
+    .nav-left { width: 100%; justify-content: space-between; }
+    .nav-brand { font-size: 1.3rem; }
+    .nav-clock { padding: 5px 12px; font-size: 0.8rem; }
     
-    /* Botones del menú en celular */
-    .nav-links {
-        width: 100%;
-        flex-wrap: wrap; /* Permite que los botones bajen si no caben */
-        justify-content: center;
-        gap: 8px;
-    }
-    .nav-btn {
-        padding: 6px 14px;
-        font-size: 0.85rem;
-    }
+    .nav-links { width: 100%; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .nav-btn { padding: 6px 14px; font-size: 0.85rem; }
 
-    /* Como el menú ahora es más alto, bajamos el título para que no se tape */
-    .hero {
-        padding-top: 200px;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
+    .hero { padding-top: 200px; }
+    .hero h1 { font-size: 3rem; }
 
-    /* Ajuste de formularios para que no se salgan de la pantalla */
-    .form-row {
-        flex-direction: column; /* Pone la fecha arriba y la hora abajo */
-        gap: 0;
-    }
-    .form-group-half {
-        width: 100%;
-    }
+    /* SOLUCIÓN AL FORMULARIO AMONTONADO */
     .coquette-form {
-        padding: 25px; /* Menos espacio en blanco a los lados */
+        padding: 25px 20px; /* Un poco menos de espacio a los lados para que las cajas respiren */
+    }
+    .form-row {
+        flex-direction: column; 
+        gap: 15px; /* Aquí le regresamos el espacio vital entre las cajas de fecha y hora */
+    }
+    .form-group-half { width: 100%; }
+    .interactive-form input, .interactive-form select {
+        padding: 12px 12px 12px 40px; /* Hacemos las cajas ligeramente más compactas por dentro */
     }
 }
