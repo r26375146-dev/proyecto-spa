@@ -10,8 +10,15 @@
 </head>
 <body>
 
+    <!-- Barra de Navegación con Reloj Integrado -->
     <nav class="navbar" id="navbar">
-        <div class="nav-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
+        <div class="nav-left">
+            <div class="nav-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
+            <!-- NUEVO: Reloj Coquette en tiempo real -->
+            <div class="nav-clock">
+                <i class="far fa-clock"></i> <span id="real-time-clock">--:--:--</span>
+            </div>
+        </div>
         <ul class="nav-links">
             <li><a href="#inicio" class="nav-btn">Inicio</a></li>
             <li><a href="#servicios" class="nav-btn">Servicios</a></li>
@@ -35,6 +42,7 @@
     </header>
 
     <main class="container">
+        <!-- SECCIÓN DE SERVICIOS -->
         <section class="services" id="servicios">
             <h2 class="reveal"><i class="fas fa-sparkles title-icon"></i> Nuestros Servicios Exclusivos</h2>
             <div class="service-grid">
@@ -57,6 +65,7 @@
             </div>
         </section>
 
+        <!-- PORTAFOLIO MEJORADO CON 9 IMÁGENES -->
         <section class="portfolio" id="galeria">
             <h2 class="reveal"><i class="fas fa-camera-retro title-icon"></i> Arte en tus Manos</h2>
             <div class="gallery reveal">
@@ -99,6 +108,7 @@
             </div>
         </section>
 
+        <!-- SECCIÓN DE TESTIMONIOS -->
         <section class="testimonials" id="testimonios">
             <h2 class="reveal"><i class="fas fa-heart title-icon"></i> Lo que dicen nuestras clientas</h2>
             <div class="testimonial-grid reveal">
@@ -117,6 +127,7 @@
             </div>
         </section>
 
+        <!-- FORMULARIO DE AGENDADO -->
         <section class="booking reveal" id="reservas">
             <div class="booking-content">
                 <h2><i class="fas fa-calendar-check title-icon"></i> Reserva tu Momento Glow</h2>
@@ -155,6 +166,7 @@
             </div>
         </section>
 
+        <!-- SECCIÓN DE CANCELLACIÓN -->
         <section class="booking cancel-section reveal">
             <div class="booking-content">
                 <h3 style="color: #C71585;"><i class="fas fa-calendar-times"></i> ¿Necesitas cancelar tu cita?</h3>
@@ -174,10 +186,12 @@
         </section>
     </main>
 
+    <!-- Botón Flotante de Contacto -->
     <a href="https://t.me/Spa_Rubi_bot" class="floating-btn" title="Contactar por Telegram">
         <i class="fab fa-telegram-plane"></i>
     </a>
 
+    <!-- MODALES Y ALERTAS -->
     {% if error_ocupado %}
     <div class="modal-overlay" style="display: flex;">
         <div class="modal-content alert-modal">
@@ -208,6 +222,7 @@
         </div>
     </div>
 
+    <!-- Footer Elegante -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
