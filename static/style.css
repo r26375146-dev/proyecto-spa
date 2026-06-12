@@ -38,64 +38,29 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
 }
 .navbar.scrolled { padding: 10px 50px; background: rgba(255, 255, 255, 0.95); }
 
-/* Contenedor Izquierdo (Logo + Reloj) */
 .nav-left { display: flex; align-items: center; gap: 20px; }
 .nav-brand { font-family: var(--serif-elegante); font-size: 1.5rem; color: var(--rosa-vibrante); font-weight: bold; font-style: italic; }
 
-/* El Reloj Coquette (Mismo estilo que los botones) */
 .nav-clock {
-    background-color: var(--rosa-claro);
-    padding: 8px 20px;
-    border-radius: 30px;
-    color: var(--texto-oscuro);
-    font-size: 0.95rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3);
-    transition: all 0.3s ease;
+    background-color: var(--rosa-claro); padding: 8px 20px; border-radius: 30px;
+    color: var(--texto-oscuro); font-size: 0.95rem; font-weight: 600;
+    display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 10px rgba(255, 182, 193, 0.3); transition: all 0.3s ease;
 }
-
 .nav-clock:hover {
-    background-color: var(--rosa-vibrante);
-    color: var(--blanco-puro);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+    background-color: var(--rosa-vibrante); color: var(--blanco-puro); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
 }
-
-.nav-clock i {
-    animation: pulse-clock 2s infinite;
-}
+.nav-clock i { animation: pulse-clock 2s infinite; }
 
 .nav-links { list-style: none; display: flex; gap: 12px; margin: 0; align-items: center; }
 
-/* Estilo unificado de botones en el menú */
 .nav-btn {
-    background-color: var(--rosa-claro);
-    padding: 8px 20px;
-    border-radius: 30px;
-    color: var(--texto-oscuro) !important;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
+    background-color: var(--rosa-claro); padding: 8px 20px; border-radius: 30px;
+    color: var(--texto-oscuro) !important; font-weight: 600; text-decoration: none; transition: all 0.3s ease;
 }
-.nav-btn:hover {
-    background-color: var(--rosa-vibrante);
-    color: var(--blanco-puro) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
-}
+.nav-btn:hover { background-color: var(--rosa-vibrante); color: var(--blanco-puro) !important; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5); }
 
-/* El botón principal de Agendar en el menú */
-.highlight-btn {
-    background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4);
-    color: var(--blanco-puro) !important;
-    box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-}
-.highlight-btn:hover {
-    box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
-}
+.highlight-btn { background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4); color: var(--blanco-puro) !important; box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3); }
+.highlight-btn:hover { box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5); }
 
 /* --- 3. Encabezado Hero --- */
 .hero {
@@ -120,82 +85,29 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
     background: var(--blanco-puro); border: 1px solid rgba(255, 182, 193, 0.4);
     border-radius: 25px; padding: 40px 30px; width: 350px;
     box-shadow: var(--sombra-elegante); transition: all 0.4s ease;
-    display: flex; flex-direction: column; align-items: center;
+    display: flex; flex-direction: column; align-items: center; box-sizing: border-box;
 }
 .service-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(255, 20, 147, 0.2); border-color: var(--rosa-vibrante); }
-
-.service-icon {
-    font-size: 3rem; color: var(--rosa-vibrante); margin-bottom: 20px;
-    background: var(--rosa-pastel); padding: 20px; border-radius: 50%;
-    box-shadow: inset 0 0 10px rgba(255,182,193,0.5); transition: transform 0.3s ease;
-}
+.service-icon { font-size: 3rem; color: var(--rosa-vibrante); margin-bottom: 20px; background: var(--rosa-pastel); padding: 20px; border-radius: 50%; box-shadow: inset 0 0 10px rgba(255,182,193,0.5); transition: transform 0.3s ease; }
 .service-card:hover .service-icon { transform: rotate(10deg) scale(1.1); }
 .service-price { margin-bottom: 25px; }
 
-/* --- 5. SISTEMA DE BOTONES UNIFICADOS (Estilo Moñito) --- */
-.coquette-btn-main {
-    background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4);
-    color: var(--blanco-puro);
-    padding: 15px 40px;
-    border-radius: 30px; 
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-.coquette-btn-secondary {
-    background: linear-gradient(45deg, #FFC0CB, #FFB6C1);
-    color: var(--rosa-oscuro);
-    padding: 12px 30px;
-    border-radius: 30px; 
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 15px rgba(255, 182, 193, 0.4);
-    position: relative;
-    overflow: hidden;
-    margin-top: auto; 
-    width: 100%;
-}
-
-.coquette-btn-main::after, .coquette-btn-secondary::after {
-    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-    background: rgba(255,255,255,0.3); transform: rotate(45deg); transition: all 0.3s ease; opacity: 0;
-}
-
+/* --- 5. Botones --- */
+.coquette-btn-main { background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4); color: var(--blanco-puro); padding: 15px 40px; border-radius: 30px; font-size: 1.2rem; font-weight: 600; text-decoration: none; display: inline-block; cursor: pointer; border: none; transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4); position: relative; overflow: hidden; }
+.coquette-btn-secondary { background: linear-gradient(45deg, #FFC0CB, #FFB6C1); color: var(--rosa-oscuro); padding: 12px 30px; border-radius: 30px; font-size: 1rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 15px rgba(255, 182, 193, 0.4); position: relative; overflow: hidden; margin-top: auto; width: 100%; }
+.coquette-btn-main::after, .coquette-btn-secondary::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: rgba(255,255,255,0.3); transform: rotate(45deg); transition: all 0.3s ease; opacity: 0; }
 .coquette-btn-main:hover, .coquette-btn-secondary:hover { transform: translateY(-3px) scale(1.02); }
 .coquette-btn-main:hover { box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6); }
-.coquette-btn-secondary:hover { 
-    background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4);
-    color: white; box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4); 
-}
+.coquette-btn-secondary:hover { background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4); color: white; box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4); }
 .coquette-btn-main:hover::after, .coquette-btn-secondary:hover::after { left: 100%; opacity: 1; transition: left 0.7s ease; }
 
-/* --- 6. Galería Interactiva --- */
+/* --- 6. Galería --- */
 .portfolio { padding: 60px 0; }
 .portfolio h2 { font-size: 2.5rem; color: var(--rosa-oscuro); margin-bottom: 40px; }
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px; margin-top: 30px;
-}
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
 .img-wrapper { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--sombra-elegante); height: 350px; }
 .gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.img-overlay {
-    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(199, 21, 133, 0.7); display: flex; justify-content: center; align-items: center;
-    opacity: 0; transition: opacity 0.3s ease;
-}
+.img-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(199, 21, 133, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
 .img-overlay span { color: white; font-family: var(--serif-elegante); font-size: 1.5rem; font-style: italic; transform: translateY(20px); transition: transform 0.3s ease; }
 .img-wrapper:hover .gallery-img { transform: scale(1.1); }
 .img-wrapper:hover .img-overlay { opacity: 1; }
@@ -204,7 +116,7 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
 /* --- 7. Testimonios --- */
 .testimonials { padding: 80px 0; background: var(--blanco-puro); border-top: 2px dashed var(--rosa-claro); border-bottom: 2px dashed var(--rosa-claro); }
 .testimonial-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-.testimonial-card { background: var(--rosa-pastel); padding: 40px; border-radius: 20px; width: 400px; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.testimonial-card { background: var(--rosa-pastel); padding: 40px; border-radius: 20px; width: 400px; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05); box-sizing: border-box;}
 .quote-icon { font-size: 2rem; color: var(--rosa-claro); margin-bottom: 15px; }
 .testimonial-card p { font-style: italic; color: var(--texto-oscuro); line-height: 1.6; }
 .testimonial-card h4 { color: var(--rosa-vibrante); margin-top: 20px; margin-bottom: 5px; }
@@ -214,7 +126,7 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
 .booking { padding: 80px 0; }
 .coquette-form {
     max-width: 550px; margin: 0 auto; text-align: left; background: var(--blanco-puro);
-    padding: 40px; border-radius: 25px; box-shadow: var(--sombra-elegante); border: 1px solid rgba(255, 182, 193, 0.5);
+    padding: 40px; border-radius: 25px; box-shadow: var(--sombra-elegante); border: 1px solid rgba(255, 182, 193, 0.5); box-sizing: border-box;
 }
 .form-group label { display: block; margin-bottom: 8px; color: var(--rosa-oscuro); font-weight: 600; font-size: 0.95rem; }
 .input-icon-wrapper { position: relative; margin-bottom: 20px; }
@@ -224,6 +136,12 @@ h1, h2, h3, h4 { font-family: var(--serif-elegante); }
     font-family: var(--sans-moderna); background-color: #FAFAFA; transition: all 0.3s ease; box-sizing: border-box;
 }
 .interactive-form input:focus, .interactive-form select:focus { border-color: var(--rosa-vibrante); background-color: var(--blanco-puro); outline: none; box-shadow: 0 0 0 4px rgba(255, 20, 147, 0.1); }
+
+/* Acomodo de Fecha y Hora en columnas */
+.form-row { display: flex; gap: 15px; width: 100%; margin-bottom: 20px; }
+.form-group-half { flex: 1; }
+.form-group-half label { display: block; margin-bottom: 8px; color: var(--rosa-oscuro); font-weight: 600; font-size: 0.95rem; }
+
 .cancel-section { padding: 40px 0 80px; background: transparent; }
 .minimal-form { background: transparent; box-shadow: none; border: none; padding: 0; }
 .minimal-form input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--rosa-claro); box-sizing: border-box; background: white; margin-bottom: 15px;}
@@ -252,4 +170,63 @@ footer { background: linear-gradient(180deg, var(--rosa-vibrante), var(--rosa-os
 @keyframes pulse-clock { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
 
 .modal-overlay { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(255, 240, 245, 0.8); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
-.modal-content { background: white; padding: 40px; border-radius: 30px; max-width: 500px; box-shadow: var(--sombra-elegante); position: relative; border: 1px solid var(--rosa-claro); }
+.modal-content { background: white; padding: 40px; border-radius: 30px; max-width: 500px; box-shadow: var(--sombra-elegante); position: relative; border: 1px solid var(--rosa-claro); width: 90%; box-sizing: border-box; }
+
+
+/* =======================================================
+   12. MAGIA PARA CELULARES (RESPONSIVIDAD)
+   ======================================================= */
+@media (max-width: 768px) {
+    /* Barra de Navegación Móvil */
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column; /* Acomoda todo de arriba hacia abajo */
+        gap: 15px;
+    }
+    .navbar.scrolled {
+        padding: 10px 20px;
+    }
+    .nav-left {
+        width: 100%;
+        justify-content: space-between; /* Separa el logo del reloj */
+    }
+    .nav-brand {
+        font-size: 1.3rem; /* Letra un poco más pequeña */
+    }
+    .nav-clock {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Botones del menú en celular */
+    .nav-links {
+        width: 100%;
+        flex-wrap: wrap; /* Permite que los botones bajen si no caben */
+        justify-content: center;
+        gap: 8px;
+    }
+    .nav-btn {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+
+    /* Como el menú ahora es más alto, bajamos el título para que no se tape */
+    .hero {
+        padding-top: 200px;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    /* Ajuste de formularios para que no se salgan de la pantalla */
+    .form-row {
+        flex-direction: column; /* Pone la fecha arriba y la hora abajo */
+        gap: 0;
+    }
+    .form-group-half {
+        width: 100%;
+    }
+    .coquette-form {
+        padding: 25px; /* Menos espacio en blanco a los lados */
+    }
+}
