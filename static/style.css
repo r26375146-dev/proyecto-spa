@@ -1,288 +1,479 @@
-/* --- 1. Estilos Globales Profesionales --- */
+/* --- 1. Estilos Globales y Variables --- */
 :root {
-    --rosa-pastel: #FFF0F5;
+    --rosa-pastel: #FFF5F8;
     --rosa-claro: #FFB6C1;
     --rosa-vibrante: #FF1493;
+    --rosa-oscuro: #C71585;
     --texto-oscuro: #4A4A4A;
+    --texto-claro: #7A7A7A;
     --blanco-puro: #ffffff;
     --serif-elegante: 'Playfair Display', serif;
+    --sans-moderna: 'Poppins', sans-serif;
+    --gradiente-coquette: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%);
+    --sombra-elegante: 0 10px 30px rgba(255, 182, 193, 0.3);
+}
+
+html {
+    scroll-behavior: smooth; /* Para que los links del menú bajen suavemente */
 }
 
 body {
-    font-family: var(--serif-elegante);
+    font-family: var(--sans-moderna);
     background-color: var(--rosa-pastel);
     color: var(--texto-oscuro);
     margin: 0;
     padding: 0;
     text-align: center;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--serif-elegante);
+}
+
+.title-icon {
+    color: var(--rosa-vibrante);
+    margin-right: 10px;
+    font-size: 0.8em;
 }
 
 .container {
-    max-width: 1000px; /* Un poco más ancho para mayor profesionalismo */
-    margin: 40px auto;
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 0 30px;
 }
 
-h2 {
+/* --- 2. Barra de Navegación (NUEVO) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    box-shadow: 0 2px 15px rgba(255, 182, 193, 0.2);
+    z-index: 2000;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 10px 50px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-brand {
+    font-family: var(--serif-elegante);
+    font-size: 1.5rem;
     color: var(--rosa-vibrante);
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-/* --- 2. Encabezado --- */
-.hero {
-    background-color: var(--rosa-claro);
-    padding: 80px 20px;
-    border-bottom: 4px solid var(--rosa-vibrante);
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
-}
-
-.hero h1 {
-    font-size: 3.5em;
-    color: var(--blanco-puro);
-    text-shadow: 2px 2px 5px rgba(255, 20, 147, 0.6);
-    margin: 0;
+    font-weight: bold;
     font-style: italic;
 }
 
-.hero p {
-    color: var(--texto-oscuro);
-    font-size: 1.2rem;
-    margin-top: 10px;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    align-items: center;
 }
 
-/* --- 3. Tarjetas de Servicios --- */
-.services {
-    margin-bottom: 60px;
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto-oscuro);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
+
+.nav-links a:hover {
+    color: var(--rosa-vibrante);
+}
+
+.nav-btn {
+    background-color: var(--rosa-claro);
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: var(--texto-oscuro) !important;
+    font-weight: bold;
+}
+
+.nav-btn:hover {
+    background-color: var(--rosa-vibrante);
+    color: white !important;
+}
+
+/* --- 3. Encabezado Hero Mejorado --- */
+.hero {
+    background: var(--gradiente-coquette);
+    padding: 150px 20px 100px; /* Espacio extra arriba por la navbar */
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255, 182, 193, 0.5);
+}
+
+.hero h1 {
+    font-size: 4.5em;
+    color: var(--rosa-oscuro);
+    margin: 0;
+    font-style: italic;
+    animation: float 4s ease-in-out infinite; /* Animación flotante */
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--texto-claro);
+    margin: 15px 0 35px;
+}
+
+/* Brillos animados en el fondo */
+.sparkles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+.sparkle {
+    position: absolute;
+    color: var(--rosa-vibrante);
+    opacity: 0.3;
+    animation: twinkle 3s infinite alternate;
+}
+.s1 { top: 20%; left: 20%; font-size: 20px; animation-delay: 0s;}
+.s2 { top: 60%; right: 25%; font-size: 15px; animation-delay: 1s;}
+.s3 { top: 30%; right: 15%; font-size: 25px; animation-delay: 2s;}
+
+/* --- 4. Tarjetas de Servicios con Animaciones --- */
+.services { padding: 80px 0; }
+.services h2 { font-size: 2.5rem; color: var(--rosa-oscuro); margin-bottom: 40px; }
 
 .service-grid {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 40px;
     flex-wrap: wrap;
-    gap: 30px;
 }
 
 .service-card {
-    background-color: var(--blanco-puro);
-    border: 1px solid #FFC0CB;
-    border-radius: 20px;
-    padding: 30px;
-    width: 42%;
-    box-shadow: 0 6px 12px rgba(255, 182, 193, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    background: var(--blanco-puro);
+    border: 1px solid rgba(255, 182, 193, 0.4);
+    border-radius: 25px;
+    padding: 40px 30px;
+    width: 350px;
+    position: relative;
+    box-shadow: var(--sombra-elegante);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 25px;
+    background: linear-gradient(135deg, transparent, rgba(255, 182, 193, 0.1));
+    z-index: -1;
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(255, 182, 193, 0.5);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(255, 20, 147, 0.2);
     border-color: var(--rosa-vibrante);
 }
 
 .service-icon {
-    font-size: 2.5rem;
-    color: var(--rosa-claro);
-    margin-bottom: 15px;
-}
-
-.service-card h3 {
+    font-size: 3rem;
     color: var(--rosa-vibrante);
-    font-size: 1.8rem;
-    margin: 10px 0;
+    margin-bottom: 20px;
+    background: var(--rosa-pastel);
+    padding: 20px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(255,182,193,0.5);
+    transition: transform 0.3s ease;
 }
 
-.service-price {
-    font-size: 1.1rem;
-    margin-top: auto; /* Empujar hacia abajo */
-    margin-bottom: 15px;
+.service-card:hover .service-icon {
+    transform: rotate(10deg) scale(1.1);
 }
 
-.price-value {
-    font-weight: bold;
-    color: var(--rosa-vibrante);
-}
-
-/* --- 4. Botones --- */
-
-/* Botón secundario "Ver detalles profesionales" */
+/* --- 5. Botones Modernos --- */
 .btn-info {
-    background-color: var(--rosa-claro);
-    color: var(--texto-oscuro);
-    border: none;
+    background-color: var(--rosa-pastel);
+    color: var(--rosa-oscuro);
+    border: 1px solid var(--rosa-claro);
     padding: 12px 25px;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
-    font-family: var(--serif-elegante);
+    font-family: var(--sans-moderna);
     font-size: 1rem;
-    box-shadow: 0 4px 8px rgba(255, 182, 193, 0.4);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 600;
     width: 100%;
+    transition: all 0.3s ease;
 }
 
 .btn-info:hover {
-    background-color: #ffc0cb;
-    transform: scale(1.03);
+    background-color: var(--rosa-vibrante);
+    color: var(--blanco-puro);
+    border-color: var(--rosa-vibrante);
+    box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
 }
 
-/* Botón principal "Agendar mi cita" (Coquette) */
 .coquette-btn-main {
-    background-color: var(--rosa-vibrante);
+    background: linear-gradient(45deg, var(--rosa-vibrante), #FF69B4);
     color: var(--blanco-puro);
     padding: 15px 40px;
     border-radius: 30px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 6px 18px rgba(255, 105, 180, 0.5);
     display: inline-block;
-    font-weight: bold;
-    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.coquette-btn-main::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    opacity: 0;
 }
 
 .coquette-btn-main:hover {
-    background-color: #FF69B4;
-    transform: scale(1.05);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
 }
 
-/* --- 5. Pantalla Modal Profesional --- */
-.modal-overlay {
-    display: none; /* Oculto por defecto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro atenuado */
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.4s ease;
+.coquette-btn-main:hover::after {
+    left: 100%;
+    opacity: 1;
+    transition: left 0.7s ease;
 }
 
-.modal-content {
-    background-color: var(--blanco-puro);
-    padding: 40px;
-    border-radius: 25px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.4);
-    position: relative;
-    text-align: center;
-    animation: scaleUp 0.4s ease;
-}
+/* --- 6. Galería Interactiva (Grid) --- */
+.portfolio { padding: 60px 0; }
+.portfolio h2 { font-size: 2.5rem; color: var(--rosa-oscuro); margin-bottom: 40px; }
 
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: var(--rosa-claro);
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-modal:hover {
-    color: var(--rosa-vibrante);
-}
-
-.modal-icon {
-    font-size: 3rem;
-    color: var(--rosa-claro);
-    margin-bottom: 20px;
-}
-
-.modal-content h3 {
-    color: var(--rosa-vibrante);
-    font-size: 2rem;
-    margin-bottom: 15px;
-}
-
-.modal-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.modal-price {
-    color: var(--rosa-vibrante);
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.modal-btn {
-    font-size: 1.1rem;
-    padding: 12px 30px;
-}
-
-.secondary-btn {
-    background-color: #FFF0F5;
-    color: var(--rosa-vibrante);
-    border: 1px solid var(--rosa-vibrante);
-    width: auto;
-}
-
-.secondary-btn:hover {
-    background-color: var(--blanco-puro);
-    border-color: #FF69B4;
-    color: #FF69B4;
-}
-
-/* --- 6. Portafolio, Booking, Footer --- */
-/* (Mismos estilos básicos, solo refinados) */
 .gallery {
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.img-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--sombra-elegante);
+    height: 350px;
 }
 
 .gallery-img {
     width: 100%;
-    max-width: 400px;
-    height: 400px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 30px;
-    border: 6px solid var(--rosa-claro);
-    box-shadow: 0 10px 20px rgba(255, 105, 180, 0.4);
+    transition: transform 0.5s ease;
 }
 
-.booking {
-    background-color: var(--blanco-puro);
-    padding: 50px 30px;
+.img-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(199, 21, 133, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.img-overlay span {
+    color: white;
+    font-family: var(--serif-elegante);
+    font-size: 1.5rem;
+    font-style: italic;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.img-wrapper:hover .gallery-img { transform: scale(1.1); }
+.img-wrapper:hover .img-overlay { opacity: 1; }
+.img-wrapper:hover .img-overlay span { transform: translateY(0); }
+
+/* --- 7. Testimonios (NUEVO) --- */
+.testimonials {
+    padding: 80px 0;
+    background: var(--blanco-puro);
+    border-top: 2px dashed var(--rosa-claro);
+    border-bottom: 2px dashed var(--rosa-claro);
+}
+
+.testimonial-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background: var(--rosa-pastel);
+    padding: 40px;
+    border-radius: 20px;
+    width: 400px;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--rosa-claro);
+    margin-bottom: 15px;
+}
+
+.testimonial-card p { font-style: italic; color: var(--texto-oscuro); line-height: 1.6; }
+.testimonial-card h4 { color: var(--rosa-vibrante); margin-top: 20px; margin-bottom: 5px; }
+.stars { color: #FFD700; font-size: 0.9rem; }
+
+/* --- 8. Formularios Profesionales --- */
+.booking { padding: 80px 0; }
+.coquette-form {
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--blanco-puro);
+    padding: 40px;
     border-radius: 25px;
-    box-shadow: 0 6px 15px rgba(255, 182, 193, 0.3);
-    margin-top: 60px;
+    box-shadow: var(--sombra-elegante);
+    border: 1px solid rgba(255, 182, 193, 0.5);
 }
 
-.booking p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--rosa-oscuro);
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
+.input-icon-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rosa-claro);
+}
+
+.interactive-form input, .interactive-form select {
+    width: 100%;
+    padding: 15px 15px 15px 45px; /* Espacio para el icono */
+    border-radius: 15px;
+    border: 2px solid #FFE4E1;
+    font-family: var(--sans-moderna);
+    background-color: #FAFAFA;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.interactive-form input:focus, .interactive-form select:focus {
+    border-color: var(--rosa-vibrante);
+    background-color: var(--blanco-puro);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 20, 147, 0.1);
+}
+
+.cancel-section {
+    padding: 40px 0 80px;
+    background: transparent;
+}
+.minimal-form { background: transparent; box-shadow: none; border: none; padding: 0; }
+.minimal-form input {
+    width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--rosa-claro);
+    box-sizing: border-box; background: white;
+}
+.btn-cancel { background: white; color: var(--rosa-oscuro); border: 2px solid var(--rosa-claro); }
+.btn-cancel:hover { background: #FFF0F5; border-color: #FF4757; color: #FF4757; }
+
+/* --- 9. Botón Flotante (NUEVO) --- */
+.floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #27A6E5; /* Color Telegram */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(39, 166, 229, 0.4);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+.floating-btn:hover { transform: scale(1.15) rotate(-10deg); }
+
+/* --- 10. Footer Elegante --- */
 footer {
-    margin-top: 60px;
-    padding: 25px;
-    font-size: 0.9em;
-    color: var(--blanco-puro);
-    background-color: var(--rosa-vibrante);
+    background: linear-gradient(180deg, var(--rosa-vibrante), var(--rosa-oscuro));
+    color: white;
+    padding: 50px 20px 20px;
+}
+.footer-brand { font-family: var(--serif-elegante); font-size: 2rem; margin-bottom: 10px; font-style: italic;}
+.social-links { margin: 20px 0; }
+.social-links a {
+    color: white; font-size: 1.5rem; margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+.social-links a:hover { transform: translateY(-5px); color: var(--rosa-claro); }
+.copyright { font-size: 0.85rem; opacity: 0.8; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;}
+
+/* --- 11. Clases de Animación (Revelado al hacer scroll) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* --- 7. Animaciones --- */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 0.8; transform: scale(1.2); }
 }
 
-@keyframes scaleUp {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+/* Modales existentes refinados */
+.modal-overlay {
+    display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(255, 240, 245, 0.8); backdrop-filter: blur(5px);
+    justify-content: center; align-items: center;
+}
+.modal-content {
+    background: white; padding: 40px; border-radius: 30px; max-width: 500px;
+    box-shadow: var(--sombra-elegante); position: relative; border: 1px solid var(--rosa-claro);
 }
