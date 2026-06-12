@@ -156,11 +156,18 @@ def agendar():
             if len(fila) > 3 and fila[2] == fecha and fila[3] == hora:
                 return render_template('index.html', error_ocupado=True, fecha_ocu=fecha, hora_ocu=hora)
         
-        # Guardar en Excel
+        # Guardar la nueva fila al final
         sheet.append_row([nombre, servicio, fecha, hora])
         
-        # Ordenar respetando la fila de títulos (Rango A2 en adelante)
-        sheet.sort((3, 'asc'), (4, 'asc'), range='A2:D1000')
+        # ORDENAMIENTO DINÁMICO INTELIGENTE
+        # Contamos cuántas filas hay exactamente (incluyendo la nueva)
+        total_filas = len(sheet.get_all_values())
+        
+        # Si hay más de 1 fila (es decir, hay títulos y al menos una cita)
+        if total_filas > 1:
+            # Ordenamos estrictamente desde la fila 2 hasta la fila exacta donde termina la información
+            rango_exacto = f'A2:D{total_filas}'
+            sheet.sort((3, 'asc'), (4, 'asc'), range=rango_exacto)
         
     mensaje_notificacion = f"🎀 ¡NUEVA CITA! 🎀\n\n👤 Clienta: {nombre}\n💅 Servicio: {servicio}\n📅 Fecha: {fecha}\n⏰ Hora: {hora}\n\n✅ Registrada en Excel."
     enviar_aviso_telegram(mensaje_notificacion)
