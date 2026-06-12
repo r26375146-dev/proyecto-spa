@@ -14,8 +14,8 @@ app = Flask(__name__)
 TOKEN = os.environ.get("TELEGRAM_TOKEN")
 CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
-NUMERO_WHATSAPP = "521234567890" # Pon tu número con código de país, sin el +
-NUMERO_TELEFONO = "+521234567890" # Pon tu número con el +
+NUMERO_WHATSAPP = "4501116459" # Pon tu número con código de país, sin el +
+NUMERO_TELEFONO = "+524501116459" # Pon tu número con el +
 LINK_GOOGLE_MAPS = "https://maps.google.com/?q=19.432608,-99.133209"
 LATITUD = 19.432608 # Coordenada Norte/Sur
 LONGITUD = -99.133209 # Coordenada Este/Oeste
