@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glow & Elegance | Spa y Uñas Coquette</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- TRUCO ANTI-CACHÉ: Agregamos ?v=2 para forzar la actualización del diseño -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- Barra de Navegación -->
     <nav class="navbar" id="navbar">
         <div class="nav-left">
             <div class="nav-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
@@ -32,7 +34,8 @@
             <i class="fas fa-star sparkle s2"></i>
             <i class="fas fa-star sparkle s3"></i>
         </div>
-        <div class="hero-content reveal">
+        <!-- Le quitamos la clase 'reveal' para que el título siempre sea visible al instante -->
+        <div class="hero-content">
             <h1>Glow & Elegance</h1>
             <p>Tu santuario de belleza coquette y relajación absoluta.</p>
             <a href="#reservas" class="coquette-btn-main hero-btn">Descubre la experiencia 🎀</a>
@@ -40,6 +43,7 @@
     </header>
 
     <main class="container">
+        <!-- SECCIÓN DE SERVICIOS -->
         <section class="services" id="servicios">
             <h2 class="reveal"><i class="fas fa-sparkles title-icon"></i> Nuestros Servicios Exclusivos</h2>
             <div class="service-grid">
@@ -62,6 +66,7 @@
             </div>
         </section>
 
+        <!-- PORTAFOLIO CON CARGA RÁPIDA -->
         <section class="portfolio" id="galeria">
             <h2 class="reveal"><i class="fas fa-camera-retro title-icon"></i> Arte en tus Manos</h2>
             <div class="gallery reveal">
@@ -97,4 +102,142 @@
                     <img src="https://images.unsplash.com/photo-1600180758890-a7d18bc3d6d0?auto=format&fit=crop&w=600&q=70" alt="Detalle manicura" class="gallery-img" loading="lazy">
                     <div class="img-overlay"><span>Arte y Precisión</span></div>
                 </div>
-                <div class
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=70" alt="Cuidado personal" class="gallery-img" loading="lazy">
+                    <div class="img-overlay"><span>Renueva tu Piel</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE TESTIMONIOS -->
+        <section class="testimonials" id="testimonios">
+            <h2 class="reveal"><i class="fas fa-heart title-icon"></i> Lo que dicen nuestras clientas</h2>
+            <div class="testimonial-grid reveal">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>"El mejor lugar de la ciudad. El trato es súper profesional y mis uñas quedaron hermosas, exactamente el estilo coquette que pedí."</p>
+                    <h4>— Selena G.</h4>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>"Me hice el masaje relajante y fue una experiencia de otro nivel. El aroma, la música y la atención son de 10. ¡Súper recomendado!"</p>
+                    <h4>— Ana M.</h4>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE AGENDADO -->
+        <section class="booking reveal" id="reservas">
+            <div class="booking-content">
+                <h2><i class="fas fa-calendar-check title-icon"></i> Reserva tu Momento Glow</h2>
+                <p>Completa tus datos para agendar tu espacio de belleza en nuestro sistema administrativo.</p>
+                
+                <form action="/agendar" method="POST" class="coquette-form interactive-form">
+                    <div class="form-group">
+                        <label>Tu Nombre Completo:</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" name="nombre" required placeholder="Ej. Valentina...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Selecciona el Servicio:</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-concierge-bell input-icon"></i>
+                            <select name="servicio" required>
+                                <option value="Manicura Spa">Manicura Spa 💅</option>
+                                <option value="Masaje Relajante">Masaje Relajante 🌸</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group-half">
+                            <label>Fecha:</label>
+                            <input type="date" name="fecha" required>
+                        </div>
+                        <div class="form-group-half">
+                            <label>Hora:</label>
+                            <input type="time" name="hora" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="coquette-btn-main btn-glow" style="width: 100%; border: none;">Confirmar y Generar Pase 🎀</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CANCELACIÓN -->
+        <section class="booking cancel-section reveal">
+            <div class="booking-content">
+                <h3 style="color: #C71585;"><i class="fas fa-calendar-times"></i> ¿Necesitas cancelar tu cita?</h3>
+                <p>Ingresa tus datos exactos para liberar tu espacio en la agenda automáticamente.</p>
+                <form action="/cancelar" method="POST" class="coquette-form minimal-form">
+                    <div class="form-row">
+                        <div class="form-group-half">
+                            <input type="text" name="nombre_cancelar" placeholder="Nombre registrado" required>
+                        </div>
+                        <div class="form-group-half">
+                            <input type="date" name="fecha_cancelar" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="coquette-btn-secondary" style="width: 100%;">Eliminar Registro de Agenda ❌</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botón Flotante de Contacto -->
+    <a href="https://t.me/Spa_Rubi_bot" class="floating-btn" title="Contactar por Telegram">
+        <i class="fab fa-telegram-plane"></i>
+    </a>
+
+    <!-- MODALES Y ALERTAS -->
+    {% if error_ocupado %}
+    <div class="modal-overlay" style="display: flex;">
+        <div class="modal-content alert-modal">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3.5rem; color: #FF4757; margin-bottom: 15px;"></i>
+            <h3 style="color: #FF4757;">Horario No Disponible</h3>
+            <p>Lo sentimos, el día <strong>{{ fecha_ocu }}</strong> a las <strong>{{ hora_ocu }}</strong> ya está reservado por otra clienta.</p>
+            <p>Por favor, selecciona una fecha u hora diferente. 🌸</p>
+            <button class="coquette-btn-main" onclick="window.location.href='/'" style="background-color: #4A4A4A;">Volver a Intentar</button>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if cancelacion_exitosa %}
+    <div class="modal-overlay" style="display: flex;">
+        <div class="modal-content success-modal">
+            <i class="fas fa-trash-alt" style="font-size: 3.5rem; color: #DB7093; margin-bottom: 15px;"></i>
+            <h3 style="color: #DB7093;">Cita Cancelada</h3>
+            <p>Tu registro ha sido eliminado con éxito de nuestra base de datos. Tu espacio está libre nuevamente.</p>
+            <button class="coquette-btn-main" onclick="window.location.href='/'">Aceptar</button>
+        </div>
+    </div>
+    {% endif %}
+
+    <div id="serviceModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            <div id="modalData"></div>
+        </div>
+    </div>
+
+    <!-- Footer Elegante -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand"><i class="fas fa-bow"></i> Glow & Elegance</div>
+            <p>Estética, relajación y profesionalismo en cada detalle.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sistema diseñado por Glow Spa.</p>
+        </div>
+    </footer>
+
+    <!-- TRUCO ANTI-CACHÉ: Forzamos al celular a descargar el reloj y las animaciones de nuevo -->
+    <script src="{{ url_for('static', filename='script.js') }}?v=2"></script>
+</body>
+</html>
